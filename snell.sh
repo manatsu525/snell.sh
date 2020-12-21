@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+read -p "请输入端口(default:8443):" port
+[[ -z ${port} ]] && port=8443
+read -p "请输入obfs(tls or http):" obfs
+[[ -z ${obfs} ]] && obfs=tsukasakuro
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 CONF="/etc/snell/snell-server.conf"
@@ -22,9 +26,9 @@ if [ -f ${CONF} ]; then
   mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
-  echo "listen = 0.0.0.0:8443" >>${CONF}
+  echo "listen = 0.0.0.0:${port}" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
-  echo "obfs = tls" >>${CONF}
+  echo "obfs = ${obfs}" >>${CONF}
 fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
