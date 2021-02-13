@@ -2,7 +2,8 @@
 read -p "请输入端口(default:8443):" port
 [[ -z ${port} ]] && port=8443
 read -p "请输入obfs(tls or http):" obfs
-[[ -z ${obfs} ]] && obfs=tsukasakuro
+[[ -z ${obfs} ]] && obfs=tls
+read -p "请输入password:" PSK
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 CONF="/etc/snell/snell-server.conf"
